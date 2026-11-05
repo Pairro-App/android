@@ -20,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,7 +35,7 @@ import pairro.controller.KeyboardController
 import pairro.controller.MouseController
 import pairro.model.ClipboardEntry
 import pairro.model.Macro
-import pairro.ui.components.common.ImmersiveLandscapeEffect
+import pairro.ui.components.common.ImmersiveControlEffect
 import pairro.ui.components.common.KeepScreenOnEffect
 import pairro.ui.components.controlpanel.ControlRail
 import pairro.ui.components.controlpanel.ControlSection
@@ -60,11 +61,13 @@ fun ControlPanel(
   onDeleteMacro: (String) -> Unit,
   touchpadSensitivity: Float = 1f,
   hapticFeedback: Boolean = true,
+  landscapeOrientation: Boolean = true,
   modifier: Modifier = Modifier
 ) {
   KeepScreenOnEffect(enabled = keepScreenOn)
 
   var activeSection by remember { mutableStateOf<ControlSection?>(null) }
+  var portrait by rememberSaveable { mutableStateOf(!landscapeOrientation) }
   var volume by remember { mutableIntStateOf(50) }
   var isMuted by remember { mutableStateOf(false) }
   var desktopHistory by remember { mutableStateOf<List<ClipboardEntry>>(emptyList()) }
@@ -122,7 +125,7 @@ fun ControlPanel(
     }
   }
 
-  ImmersiveLandscapeEffect()
+  ImmersiveControlEffect(portrait = portrait)
 
   Box(
     modifier = modifier
@@ -223,6 +226,7 @@ fun ControlPanel(
         activeSection = activeSection,
         isMuted = isMuted,
         onToggleSection = { section -> toggleSection(section) },
+        onToggleOrientation = { portrait = !portrait },
         onDisconnect = onDisconnect,
         modifier = Modifier.align(Alignment.CenterVertically)
       )

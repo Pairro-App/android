@@ -86,6 +86,7 @@ class MainActivity : ComponentActivity() {
                 onAddMacro = macroViewModel::addMacro,
                 onDeleteMacro = macroViewModel::deleteMacro,
                 touchpadSensitivity = settingsViewModel.touchpadSensitivity,
+                landscapeOrientation = settingsViewModel.screenOrientation,
                 modifier = Modifier
               )
             }

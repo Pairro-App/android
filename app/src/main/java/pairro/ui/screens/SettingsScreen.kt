@@ -40,6 +40,7 @@ import pairro.ui.theme.PairroColors
 import pairro.ui.components.settings.DeviceNameDialog
 import pairro.ui.components.settings.SettingsCard
 import pairro.ui.components.settings.SettingsDivider
+import pairro.ui.components.settings.SettingsOrientationRow
 import pairro.ui.components.settings.SettingsSliderRow
 import pairro.ui.components.settings.SettingsSwitchRow
 import pairro.ui.components.settings.SettingsValueRow
@@ -143,6 +144,15 @@ fun SettingsScreen(
           valueRange = 0.1f..5.0f,
           steps = 48,
           onValueChange = { viewModel.updateTouchpadSensitivity((it * 10).roundToInt() / 10f) }
+        )
+
+        SettingsDivider()
+
+        SettingsOrientationRow(
+          title = "Screen orientation",
+          subtitle = "Orientation used while controlling",
+          landscape = viewModel.screenOrientation,
+          onLandscapeChange = viewModel::updateScreenOrientation
         )
 
         SettingsDivider()

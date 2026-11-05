@@ -17,6 +17,7 @@ import androidx.compose.material.icons.automirrored.outlined.VolumeOff
 import androidx.compose.material.icons.automirrored.outlined.VolumeUp
 import androidx.compose.material.icons.outlined.ContentPaste
 import androidx.compose.material.icons.outlined.Keyboard
+import androidx.compose.material.icons.outlined.ScreenRotation
 import androidx.compose.material.icons.outlined.TouchApp
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -39,6 +40,7 @@ fun ControlRail(
   activeSection: ControlSection?,
   isMuted: Boolean,
   onToggleSection: (ControlSection) -> Unit,
+  onToggleOrientation: () -> Unit,
   onDisconnect: () -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -89,6 +91,12 @@ fun ControlRail(
         onClick = { onToggleSection(ControlSection.Info) },
         active = activeSection == ControlSection.Info,
         tone = IconButtonTone.Secondary
+      )
+
+      IconRoundButton(
+        icon = Icons.Outlined.ScreenRotation,
+        contentDescription = "Rotate screen",
+        onClick = onToggleOrientation
       )
 
       Box(

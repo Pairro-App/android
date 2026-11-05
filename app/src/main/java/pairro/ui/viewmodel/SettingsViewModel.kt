@@ -31,6 +31,9 @@ class SettingsViewModel @Inject constructor(
   var confirmUnpair by mutableStateOf(settingsStore.confirmUnpair)
     private set
 
+  var screenOrientation by mutableStateOf(settingsStore.screenOrientation)
+    private set
+
   fun updateAutoStartDiscoverability(value: Boolean) {
     autoStartDiscoverability = value
     settingsStore.autoStartDiscoverability = value
@@ -56,5 +59,10 @@ class SettingsViewModel @Inject constructor(
   fun updateConfirmUnpair(value: Boolean) {
     confirmUnpair = value
     settingsStore.confirmUnpair = value
+  }
+
+  fun updateScreenOrientation(value: Boolean) {
+    screenOrientation = value
+    settingsStore.screenOrientation = value
   }
 }

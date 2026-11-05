@@ -10,7 +10,7 @@ private const val PREFS_NAME = "pairro_settings"
 private const val KEY_AUTO_START_DISCOVERABILITY = "auto_start_discoverability"
 private const val KEY_DEVICE_NAME = "device_name"
 private const val KEY_TOUCHPAD_SENSITIVITY = "touchpad_sensitivity"
-private const val KEY_HAPTIC_FEEDBACK = "haptic_feedback"
+private const val KEY_SCREEN_ORIENTATION = "screen_orientation"
 private const val KEY_KEEP_SCREEN_ON = "keep_screen_on"
 private const val KEY_CONFIRM_UNPAIR = "confirm_unpair"
 
@@ -38,4 +38,8 @@ class SettingsStore @Inject constructor(@ApplicationContext context: Context) {
   var confirmUnpair: Boolean
     get() = prefs.getBoolean(KEY_CONFIRM_UNPAIR, true)
     set(value) = prefs.edit { putBoolean(KEY_CONFIRM_UNPAIR, value) }
+
+  var screenOrientation: Boolean
+    get() = prefs.getBoolean(KEY_SCREEN_ORIENTATION, true)
+    set(value) = prefs.edit { putBoolean(KEY_SCREEN_ORIENTATION, value)}
 }
