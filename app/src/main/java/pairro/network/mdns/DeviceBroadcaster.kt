@@ -30,6 +30,7 @@ class DeviceBroadcaster @Inject constructor(
       serviceType = this@DeviceBroadcaster.serviceType
       this.port = port
       this.setAttribute("device_id", deviceId)
+      this.setAttribute("device_type", "phone")
     }
 
     registrationListener =

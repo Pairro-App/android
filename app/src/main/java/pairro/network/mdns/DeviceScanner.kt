@@ -44,8 +44,13 @@ class DeviceScanner @Inject constructor(
 
             override fun onServiceResolved(serviceInfo: NsdServiceInfo) {
               val remoteId = serviceInfo.attributes["device_id"]?.decodeToString()
+              val deviceType = serviceInfo.attributes["device_type"]?.decodeToString()
 
               if (deviceId == remoteId) {
+                return
+              }
+
+              if (deviceType == "phone") {
                 return
               }
 
