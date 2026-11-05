@@ -17,8 +17,8 @@ android {
     applicationId = "com.pairro"
     minSdk = 26
     targetSdk = 36
-    versionCode = 90000
-    versionName = "0.9.0"
+    versionCode = 90001
+    versionName = "0.9.1"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
