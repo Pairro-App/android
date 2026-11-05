@@ -23,6 +23,11 @@ sealed class PairingResult {
   ) :
     PairingResult()
 
+  data class Paired(
+    val desktopId: String,
+    val desktopName: String
+  ) : PairingResult()
+
   data class Rejected(val reason: String?) : PairingResult()
   object TimedOut : PairingResult()
   data class Error(val message: String) : PairingResult()
@@ -91,7 +96,8 @@ class PairingClient @AssistedInject constructor(
       if (serverNonce.isEmpty() || !CryptoUtils.proofsMatch(
           expectedServerProof,
           serverProof
-        )) {
+        )
+      ) {
         return@withContext PairingResult.Error("Could not verify the desktop. Connection refused.")
       }
 

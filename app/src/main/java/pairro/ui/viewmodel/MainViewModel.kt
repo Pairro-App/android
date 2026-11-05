@@ -1,6 +1,7 @@
 package pairro.ui.viewmodel
 
 import android.content.Context
+import android.widget.Toast
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -73,6 +74,16 @@ class MainViewModel @Inject constructor(
           _pairingState.value = PairingUiState.Idle
 
           ConnectionForegroundService.start(context, result.desktopName)
+        }
+
+        is PairingResult.Paired -> {
+          _pairingState.value = PairingUiState.Idle
+
+          Toast.makeText(
+            context,
+            "Paired with ${result.desktopName}",
+            Toast.LENGTH_SHORT
+          ).show()
         }
 
         is PairingResult.Rejected -> {

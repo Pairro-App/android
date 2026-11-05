@@ -88,24 +88,17 @@ class DeviceController @Inject constructor(
             result.token
           )
 
-          val sessionKey = CryptoUtils.deriveKeyFromToken(result.token)
+          session.closeTcpClient()
 
-          openUdpChannel(
-            address,
-            sessionKey
-          )
-          session.markConnected(
-            address,
-            result.desktopName
-          )
+          PairingResult.Paired(result.desktopId, result.desktopName)
         }
 
         else -> {
           session.closeTcpClient()
+
+          result
         }
       }
-
-      result
     } catch (e: Exception) {
       System.err.println("Could not connect: ${e.message}")
 
